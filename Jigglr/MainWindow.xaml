@@ -1,0 +1,78 @@
+﻿<contz:WindowChromeWindow
+    x:Class="Jigglr.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:contz="urn:controlzex"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Jigglr"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
+    Title="WindowShell"
+    Width="250"
+    Height="135"
+    BorderThickness="0"
+    FlowDirection="LeftToRight"
+    GlowColor="{DynamicResource MaterialDesignShadow}"
+    KeepBorderOnMaximize="True"
+    ResizeMode="NoResize"
+    SizeToContent="Manual"
+    Style="{StaticResource MaterialDesignWindow}"
+    WindowStartupLocation="CenterScreen"
+    WindowState="Normal"
+    WindowStyle="SingleBorderWindow"
+    mc:Ignorable="d">
+
+    <Grid SnapsToDevicePixels="True">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Background="{DynamicResource MaterialDesign.Brush.Primary}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="40" />
+            </Grid.ColumnDefinitions>
+
+            <Label
+                Grid.Column="0"
+                Margin="10,0"
+                VerticalAlignment="Center"
+                contz:NonClientControlProperties.HitTestResult="CAPTION"
+                contz:WindowChrome.IsHitTestVisibleInChrome="True"
+                Content="Jigglr" />
+
+            <Button
+                Grid.Column="1"
+                Padding="0"
+                Click="ButtonMinimizeOnClick"
+                Content="{md:PackIcon Kind=WindowMinimize}"
+                Foreground="White"
+                Style="{DynamicResource MaterialDesignFlatLightButton}" />
+
+            <Button
+                Grid.Column="2"
+                Padding="0"
+                Click="CloseButton_Click"
+                Content="{md:PackIcon Kind=WindowClose}"
+                Foreground="White"
+                Style="{DynamicResource MaterialDesignFlatLightButton}" />
+
+        </Grid>
+
+        <StackPanel Grid.Row="1">
+            <TextBox
+                Margin="10,10,10,0"
+                md:HintAssist.Hint="Inactivity Time (Seconds)"
+                Style="{DynamicResource MaterialDesignFloatingHintTextBox}"
+                Text="{Binding Idler.Interval}"
+                TextAlignment="Right" />
+            <Button
+                Margin="10,10,10,0"
+                Command="{Binding StartStopCommand}"
+                Content="{Binding TimerAction}" />
+        </StackPanel>
+
+    </Grid>
+</contz:WindowChromeWindow>
